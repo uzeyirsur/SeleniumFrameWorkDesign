@@ -13,43 +13,37 @@ import java.io.IOException;
 
 
 public class ErrorValidations extends BaseTest {
-    @Test
+    @Test(groups = {"ErrorHandling"})
     public void LoginErrorValidation() throws IOException {
 
         String productName = "ZARA COAT 3";
 
         //login  @BeforeMethod
 
-        ProductCatalogue productCatalogue = landingPage.loginApplication("hey@hotmail.com", "King1542345");
-        Assert.assertEquals("Incorrect email or password.",landingPage.getErrorMessage());
+        ProductCatalogue productCatalogue = landingPage.loginApplication("he232y@hotmail.com", "King1542345");
+        Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
 
 
     }
-    @Test
-    public void productionErrorValidation() throws IOException {
 
+    @Test
+    public void productionErrorValidation() throws IOException, InterruptedException {
 
         String productName = "ZARA COAT 3";
 
         //login
-
-
         ProductCatalogue productCatalogue = landingPage.loginApplication("hey@hotmail.com", "King12345");
 
         //Add to cart
 
-        productCatalogue.waitForElementToAppear(By.cssSelector(".mb-3"));
         productCatalogue.addProductToCart(productName);
 
-
         //Go to cart page
-
         CartPage cartPage = productCatalogue.goToCartPage();
 
         //Verify the product in cart page
         boolean match = cartPage.verifyProductDisplay(productName);
         Assert.assertTrue(match);
-
 
 
     }

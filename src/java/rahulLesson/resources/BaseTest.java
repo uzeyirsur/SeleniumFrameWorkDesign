@@ -1,14 +1,14 @@
 package rahulLesson.resources;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import rahulLesson.pageObjects.LandingPage;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
@@ -16,7 +16,7 @@ import java.util.Properties;
 
 public class BaseTest {
     WebDriver driver;
-   public LandingPage landingPage;
+    public LandingPage landingPage;
 
     public WebDriver initializeDriver() throws IOException {
         Properties properties = new Properties();
@@ -42,7 +42,7 @@ public class BaseTest {
         return driver;
     }
 
-    @BeforeTest
+    @BeforeMethod
     public LandingPage launchApplication() throws IOException {
         driver = initializeDriver();
         landingPage = new LandingPage(driver);
@@ -50,8 +50,11 @@ public class BaseTest {
         return landingPage;
 
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
+
+
 }
