@@ -1,5 +1,6 @@
 package AutomationExercise.pages;
 
+import AutomationExercise.utilities.BrowserUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,7 +12,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[@href='/login']")
     WebElement signUpLoginButton;
 
-    @FindBy(css = "li a[css='10']")
+    @FindBy(xpath = "//ul[@class='nav navbar-nav'] /li[10]/a")
     WebElement loggedInAsUserName;
 
     @FindBy(css = "a[href='/delete_account']")
@@ -23,12 +24,12 @@ public class HomePage extends BasePage {
     }
 
     public void clickSignUpLogin() {
-
         signUpLoginButton.click();
     }
 
-    public void getLoggedInAsUserNameText() {
-        loggedInAsUserName.getText();
+    public String getLoggedInAsUserNameText() throws InterruptedException {
+        Thread.sleep(3000);
+        return loggedInAsUserName.getText();
     }
 
     public void clickDeleteAccount() {

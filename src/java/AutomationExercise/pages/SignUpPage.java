@@ -1,11 +1,16 @@
 package AutomationExercise.pages;
 
 
+import AutomationExercise.utilities.BrowserUtils;
+import AutomationExercise.utilities.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class SignUpPage {
+public class SignUpPage extends BasePage {
+    Actions a = new Actions(Driver.getDriver());
     @FindBy(id = "id_gender1")
     WebElement genderManRadio;
     @FindBy(id = "password")
@@ -40,14 +45,17 @@ public class SignUpPage {
     WebElement zipcode;
     @FindBy(id = "mobile_number")
     WebElement mobile_number;
-    @FindBy(xpath = "//button[text()='Create Account']")
+    @FindBy(css = "[data-qa='create-account']")
     WebElement createAccountSubmit;
 
-    @FindBy(xpath = "//div/h2/b")
+    @FindBy(xpath = "//b[text()='Enter Account Information']")
     WebElement enterAccountInformationMessage;
 
 
+
+
     public void selectGenderMan() {
+        BrowserUtils.waitForElementToAppear(genderManRadio);
         genderManRadio.click();
     }
 
@@ -72,11 +80,18 @@ public class SignUpPage {
         selectDropdown(years, year);
     }
 
-    public void clickNewsLetter() {
+    public void clickNewsLetter() throws InterruptedException {
+
+        JavascriptExecutor executor = (JavascriptExecutor)Driver.getDriver();
+        executor.executeScript("arguments[0].scrollIntoView();", newsLetter);
+        BrowserUtils.waitForElementToAppear(newsLetter);
         newsLetter.click();
     }
 
-    public void clickSpecialOffers() {
+    public void clickSpecialOffers() throws InterruptedException {
+        JavascriptExecutor executor = (JavascriptExecutor)Driver.getDriver();
+        executor.executeScript("arguments[0].scrollIntoView();", specialOffers);
+        BrowserUtils.waitForElementToAppear(specialOffers);
         specialOffers.click();
     }
 
@@ -99,27 +114,36 @@ public class SignUpPage {
     public void setAddress2(String address) {
         address2.sendKeys(address);
     }
-    public void selectCountry(String userCountry){
+
+    public void selectCountry(String userCountry) {
         Select select = new Select(country);
         select.selectByVisibleText(userCountry);
     }
-    public void setCity(String userCity){
+
+    public void setCity(String userCity) {
         city.sendKeys(userCity);
     }
-    public void setZipCode(String userZipCode){
+
+    public void setZipCode(String userZipCode) {
         zipcode.sendKeys(userZipCode);
     }
-    public void setMobileNumber(String userMobileNumber){
+
+    public void setMobileNumber(String userMobileNumber) {
         mobile_number.sendKeys(userMobileNumber);
     }
-    public void clickCreateAccount(){
+
+    public void clickCreateAccount() {
         createAccountSubmit.click();
     }
-    public String getEnterAccountInformationMessage(){
+
+    public String getEnterAccountInformationMessage() {
+
         return enterAccountInformationMessage.getText();
     }
-    public void setState(String userState){
+
+    public void setState(String userState) {
         state.sendKeys(userState);
     }
+
 
 }

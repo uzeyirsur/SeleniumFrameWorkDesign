@@ -31,8 +31,8 @@ public class BaseTest {
     public WebDriver initializeDriver() throws IOException {
 
         Properties properties = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") +
-                "\\src\\main\\java\\rahulLesson\\resources\\GlobalData.properties");
+        FileInputStream fis = new FileInputStream("C:\\Users\\omers\\workspace\\InarAcademy\\SeleniumFrameworkDesign" +
+                "\\src\\java\\rahulLesson\\resources\\GlobalData.properties");
         properties.load(fis);
         String browserName = properties.getProperty("browser");
 
@@ -81,7 +81,7 @@ public class BaseTest {
         return landingPage;
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.close();
     }

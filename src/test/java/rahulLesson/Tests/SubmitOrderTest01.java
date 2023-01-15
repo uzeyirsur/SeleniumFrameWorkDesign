@@ -16,7 +16,7 @@ import java.util.List;
 
 
 public class SubmitOrderTest01 extends BaseTest {
-    //  String productName = "ZARA COAT 3";
+      String productName = "ZARA COAT 3";
 
     @Test(dataProvider = "getData", groups = {"Purchase"})
     public void submitOrder(HashMap<String, String> input) throws IOException, InterruptedException {
@@ -50,8 +50,8 @@ public class SubmitOrderTest01 extends BaseTest {
     }
 
     @Test(dependsOnMethods = {"submitOrder"}, dataProvider = "getData")
-    public void OrderHistoryTest(String email, String password, String productName) {
-        ProductCatalogue productCatalogue = landingPage.loginApplication(email, password);
+    public void OrderHistoryTest(HashMap<String, String> input) {
+        ProductCatalogue productCatalogue = landingPage.loginApplication(input.get("email"), input.get("password"));
         OrderPage orderPage = productCatalogue.goToOrderPage();
 
         orderPage.verifyOrderedProduct(productName);

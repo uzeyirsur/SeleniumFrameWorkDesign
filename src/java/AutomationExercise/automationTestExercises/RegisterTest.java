@@ -1,9 +1,16 @@
 package AutomationExercise.automationTestExercises;
 
 import AutomationExercise.pages.SignUpPage;
+import AutomationExercise.utilities.BrowserUtils;
 import AutomationExercise.utilities.Driver;
+import lombok.Data;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 public class RegisterTest extends BaseTest {
     SoftAssert softAssert = new SoftAssert();
@@ -13,42 +20,69 @@ public class RegisterTest extends BaseTest {
         softAssert.assertEquals(Driver.getDriver().getTitle(), "Automation Exercise");
     }
 
+
     @Test
     public void verifyNewUserSignUpVisible() {
-
         pages.getHomePage().clickSignUpLogin();
         String message = pages.getLoginPage().getNewUserSignUpMessage();
         softAssert.assertEquals(message, "New User Signup!", "New User Signup! Message is not visible");
     }
 
-    @Test
-    public void verifyEnterAccountInformationVisible() {
-        pages.getLoginPage().setSignUpNewUserNameBox("Uzeyir");
-        pages.getLoginPage().setSignUpEmailAddressBox("sdads@rtrewt");
+    @Test(dependsOnMethods = {"verifyNewUserSignUpVisible"})
+    public void verifyEnterAccountInformationVisible() throws InterruptedException {
+
+        pages.getLoginPage().setSignUpNewUserNameBox("hlslisdf13ir");
+        pages.getLoginPage().setSignUpEmailAddressBox("mnmtrwd@gmalss");
         pages.getLoginPage().clickSignUpButton();
+
         String message = pages.getSignUpPage().getEnterAccountInformationMessage();
-        softAssert.assertEquals(message, "Enter Account Information");
+        softAssert.assertEquals(message, "Enter Account Information", "Enter Account Information Message is not visible");
+    }
+
+
+    @Test(dependsOnMethods = {"verifyEnterAccountInformationVisible"})
+    public void verifyAccountCreatedVisible() throws InterruptedException {
+
+
+        pages.getSignUpPage().selectGenderMan();
+        pages.getSignUpPage().enterPassword("1212wewqe");
+        pages.getSignUpPage().selectDay("5");
+        pages.getSignUpPage().selectMonth("March");
+        pages.getSignUpPage().selectYear("1972");
+        pages.getSignUpPage().clickNewsLetter();
+        pages.getSignUpPage().clickSpecialOffers();
+        pages.getSignUpPage().setFirstName("Ahmet");
+        pages.getSignUpPage().setLastName("Loyloy");
+        pages.getSignUpPage().setCompany("Inar Academy");
+        pages.getSignUpPage().setAddress1("Bilmemne Sok. sdsdsa cad.");
+        pages.getSignUpPage().setAddress2("heyhey cad. loyloy sok.");
+        pages.getSignUpPage().selectCountry("Canada");
+        pages.getSignUpPage().setState("Toronto");
+        pages.getSignUpPage().setCity("HeyCity");
+        pages.getSignUpPage().setZipCode("12121223");
+        pages.getSignUpPage().setMobileNumber("45435345345345");
+        Thread.sleep(3000);
+        pages.getSignUpPage().clickCreateAccount();
+
+        pages.getAccountCreatedPage().getAccountCreatedMessage();
     }
 
     @Test
-    public void verifyAccountCreatedVisible() {
-        SignUpPage signUpPage = pages.getSignUpPage();
-        signUpPage.selectGenderMan();
-        signUpPage.enterPassword("1212wewqe");
-        signUpPage.selectDay("5");
-        signUpPage.selectMonth("March");
-        signUpPage.selectYear("1972");
-        signUpPage.clickNewsLetter();
-        signUpPage.clickSpecialOffers();
-        signUpPage.setFirstName("Ahmet");
-        signUpPage.setLastName("Loyloy");
-        signUpPage.setCompany("Inar Academy");
-        signUpPage.setAddress1("Bilmemne Sok. sdsdsa cad.");
-        signUpPage.setAddress2("heyhey cad. loyloy sok.");
-        signUpPage.selectCountry("Canada");
-        signUpPage.setState("Toronto");
-        signUpPage.setZipCode("12121223");
-        signUpPage.setMobileNumber("45435345345345");
-        signUpPage.clickCreateAccount();
+    public void verifyAccountDeletedMessageVisibile() throws InterruptedException {
+
+        pages.getAccountCreatedPage().clickContinueButton();
+        pages.getHomePage().getLoggedInAsUserNameText();
+        pages.getHomePage().clickDeleteAccount();
+        String accountDeletedMessage = pages.getDeleteAccountPage().getAccountDeletedMessage();
+        softAssert.assertEquals(accountDeletedMessage, "Account Deleted!", "Account Deleted! message is not visible or not same as expected");
+        pages.getDeleteAccountPage().clickContinueButton();
+    }
+
+    @DataProvider(name = "getDataForAutomation")
+    public Object[][] getDataForAutomation() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") +
+                "\\src\\test\\java\\AutomationExercises\\data\\Register.json");
+        return new Object[][]{{data.get(0)}, {data.get(1)}};
+
     }
 }
