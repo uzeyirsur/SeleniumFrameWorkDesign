@@ -4,12 +4,12 @@
     <test name="Register Test">
 
         <classes>
-            <class name="AutomationExercise.automationTestExercises.RegisterTest"/>
+            <class name="AutomationExercise.automationTestExercises.TC_01_RegisterTest"/>
         </classes>
     </test>
     <test name="Login With Correct Email and Password">
         <classes>
-            <class name="AutomationExercise.automationTestExercises.LoginUserWithCorrectEmailAndPasswordTest"/>
+            <class name="AutomationExercise.automationTestExercises.TC_02_LoginUserWithCorrectEmailAndPasswordTest"/>
         </classes>
     </test>
 

@@ -1,9 +1,6 @@
 package AutomationExercise.automationTestExercises;
 
-import AutomationExercise.pages.SignUpPage;
-import AutomationExercise.utilities.BrowserUtils;
 import AutomationExercise.utilities.Driver;
-import lombok.Data;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -12,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class RegisterTest extends BaseTest {
+public class TC_01_RegisterTest extends BaseTest {
     SoftAssert softAssert = new SoftAssert();
 
     @Test
@@ -31,8 +28,8 @@ public class RegisterTest extends BaseTest {
     @Test(dependsOnMethods = {"verifyNewUserSignUpVisible"})
     public void verifyEnterAccountInformationVisible() throws InterruptedException {
 
-        pages.getLoginPage().setSignUpNewUserNameBox("hlslisdf13ir");
-        pages.getLoginPage().setSignUpEmailAddressBox("mnmtrwd@gmalss");
+        pages.getLoginPage().setSignUpNewUserNameBox("uzey");
+        pages.getLoginPage().setSignUpEmailAddressBox("uzey@gmail");
         pages.getLoginPage().clickSignUpButton();
 
         String message = pages.getSignUpPage().getEnterAccountInformationMessage();
@@ -61,9 +58,7 @@ public class RegisterTest extends BaseTest {
         pages.getSignUpPage().setCity("HeyCity");
         pages.getSignUpPage().setZipCode("12121223");
         pages.getSignUpPage().setMobileNumber("45435345345345");
-        Thread.sleep(3000);
         pages.getSignUpPage().clickCreateAccount();
-
         pages.getAccountCreatedPage().getAccountCreatedMessage();
     }
 
