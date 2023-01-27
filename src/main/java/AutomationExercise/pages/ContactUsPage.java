@@ -1,11 +1,12 @@
 package AutomationExercise.pages;
 
 import AutomationExercise.utilities.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ContactUsPage extends BasePage {
-    @FindBy(css = "//h2[normalize-space()='Get In Touch']")
+    @FindBy(xpath = "//h2[normalize-space()='Get In Touch']")
     WebElement getInTouchMessage;
 
     @FindBy(css = "input[placeholder='Name']")
@@ -28,6 +29,9 @@ public class ContactUsPage extends BasePage {
 
     @FindBy(css = ".btn.btn-success")
     WebElement homeButton;
+
+    @FindBy(css = "input[name='upload_file']")
+    WebElement selectFileButton;
 
     public String getGetInTouchMessage() {
         return getInTouchMessage.getText();
@@ -57,5 +61,8 @@ public class ContactUsPage extends BasePage {
     }
     public void clickHomeButton(){
         homeButton.click();
+    }
+    public void selectFile(String path){
+      selectFileButton.sendKeys(path);
     }
 }

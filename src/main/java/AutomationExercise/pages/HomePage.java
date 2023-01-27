@@ -32,7 +32,7 @@ public class HomePage extends BasePage {
         signUpLoginButton.click();
     }
 
-    public String getLoggedInAsUserNameText() throws InterruptedException {
+    public String getLoggedInAsUserNameText()  {
 
         return loggedInAsUserName.getText();
     }
@@ -47,5 +47,10 @@ public class HomePage extends BasePage {
 public void clickContactUs(){
         contactUsButton.click();
 }
-
+public void clickTestCases(){
+        navigateTo("Test Cases");
+}
+public void clickProductsButton(){
+        navigateTo("Products");
+}
 }

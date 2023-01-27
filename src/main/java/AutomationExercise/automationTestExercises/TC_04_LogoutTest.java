@@ -7,10 +7,6 @@ import org.testng.asserts.SoftAssert;
 
 public class TC_04_LogoutTest extends BaseTest{
     SoftAssert softAssert = new SoftAssert();
-    @Test
-    public void verifyHomePageVisible() {
-        softAssert.assertEquals(Driver.getDriver().getTitle(), "Automation Exercise");
-    }
 
 
     @Test(dependsOnMethods = {"verifyHomePageVisible"})

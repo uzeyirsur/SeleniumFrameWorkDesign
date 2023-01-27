@@ -1,20 +1,14 @@
 package AutomationExercise.automationTestExercises;
 
-
 import AutomationExercise.utilities.ConfigurationReader;
 import AutomationExercise.utilities.Driver;
 import AutomationExercise.utilities.Pages;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -39,6 +33,7 @@ public class BaseTest {
 
     }
 
+    @BeforeTest
     public void verifyHomePageVisible() {
         softAssert.assertEquals(Driver.getDriver().getTitle(), "Automation Exercise");
     }

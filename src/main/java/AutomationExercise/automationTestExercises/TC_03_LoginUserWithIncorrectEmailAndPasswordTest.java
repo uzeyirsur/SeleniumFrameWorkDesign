@@ -6,10 +6,7 @@ import org.testng.asserts.SoftAssert;
 
 public class TC_03_LoginUserWithIncorrectEmailAndPasswordTest extends BaseTest{
     SoftAssert softAssert = new SoftAssert();
-@Test
-public void verifyHomePageVisible() {
-    softAssert.assertEquals(Driver.getDriver().getTitle(), "Automation Exercise");
-}
+
 @Test
     public void verifyErrorYourEmailOrPasswordIncorrectVisible(){
     pages.getHomePage().clickSignUpLogin();

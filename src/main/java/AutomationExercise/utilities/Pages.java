@@ -9,6 +9,7 @@ public class Pages {
     private ProductsPage productsPage;
     private AccountCreatedPage accountCreatedPage;
     private DeleteAccountPage deleteAccountPage;
+    private ContactUsPage contactUsPage;
 
 
     public Pages() {
@@ -19,7 +20,7 @@ public class Pages {
         this.productsPage = new ProductsPage();
         this.accountCreatedPage = new AccountCreatedPage();
         this.deleteAccountPage = new DeleteAccountPage();
-
+        this.contactUsPage = new ContactUsPage();
     }
 
     public HomePage getHomePage() {
@@ -45,6 +46,11 @@ public class Pages {
     public DeleteAccountPage getDeleteAccountPage() {
         return deleteAccountPage;
     }
+
+    public ContactUsPage getContactUsPage() {
+        return contactUsPage;
+    }
+
 
 
 }

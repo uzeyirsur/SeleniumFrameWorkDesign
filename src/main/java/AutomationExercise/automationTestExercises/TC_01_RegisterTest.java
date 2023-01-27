@@ -12,11 +12,6 @@ import java.util.List;
 public class TC_01_RegisterTest extends BaseTest {
     SoftAssert softAssert = new SoftAssert();
 
-    @Test
-    public void verifyHomePageVisible() {
-        softAssert.assertEquals(Driver.getDriver().getTitle(), "Automation Exercise");
-    }
-
 
     @Test
     public void verifyNewUserSignUpVisible() {
@@ -28,8 +23,8 @@ public class TC_01_RegisterTest extends BaseTest {
     @Test(dependsOnMethods = {"verifyNewUserSignUpVisible"})
     public void verifyEnterAccountInformationVisible() throws InterruptedException {
 
-        pages.getLoginPage().setSignUpNewUserNameBox("uzey");
-        pages.getLoginPage().setSignUpEmailAddressBox("uzey@gmail");
+        pages.getLoginPage().setSignUpNewUserNameBox("uzey123");
+        pages.getLoginPage().setSignUpEmailAddressBox("uzey123@gmail");
         pages.getLoginPage().clickSignUpButton();
 
         String message = pages.getSignUpPage().getEnterAccountInformationMessage();
