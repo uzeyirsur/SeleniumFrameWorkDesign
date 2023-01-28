@@ -9,14 +9,14 @@ public class TC_04_LogoutTest extends BaseTest{
     SoftAssert softAssert = new SoftAssert();
 
 
-    @Test(dependsOnMethods = {"verifyHomePageVisible"})
+    @Test
     public void verifyLoggedInAsUserName() throws InterruptedException {
         pages.getHomePage().clickSignUpLogin();
-        pages.getLoginPage().setLoginEmailAddressBox("uzey@gmail");
+        pages.getLoginPage().setLoginEmailAddressBox("uzey12345@gmail");
         pages.getLoginPage().setLoginPasswordBox("1212wewqe");
         pages.getLoginPage().clickLoginButton();
         String text = pages.getHomePage().getLoggedInAsUserNameText();
-        softAssert.assertEquals(text, " Logged in as hlslslsı2ir");
+        softAssert.assertEquals(text, " Logged in as uzey12345");
     }
 
     @Test

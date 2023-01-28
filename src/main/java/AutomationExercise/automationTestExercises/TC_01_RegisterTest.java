@@ -1,5 +1,6 @@
 package AutomationExercise.automationTestExercises;
 
+import AutomationExercise.utilities.BrowserUtils;
 import AutomationExercise.utilities.Driver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,8 +24,8 @@ public class TC_01_RegisterTest extends BaseTest {
     @Test(dependsOnMethods = {"verifyNewUserSignUpVisible"})
     public void verifyEnterAccountInformationVisible() throws InterruptedException {
 
-        pages.getLoginPage().setSignUpNewUserNameBox("uzey123");
-        pages.getLoginPage().setSignUpEmailAddressBox("uzey123@gmail");
+        pages.getLoginPage().setSignUpNewUserNameBox("uzey12345");
+        pages.getLoginPage().setSignUpEmailAddressBox("uzey12345@gmail");
         pages.getLoginPage().clickSignUpButton();
 
         String message = pages.getSignUpPage().getEnterAccountInformationMessage();
@@ -59,7 +60,6 @@ public class TC_01_RegisterTest extends BaseTest {
 
     @Test
     public void verifyAccountDeletedMessageVisibile() throws InterruptedException {
-
         pages.getAccountCreatedPage().clickContinueButton();
         pages.getHomePage().getLoggedInAsUserNameText();
         pages.getHomePage().clickDeleteAccount();

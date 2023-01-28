@@ -1,4 +1,4 @@
-package AutomationExercisesWithCucumber;
+package AutomationExercisesWithCucumber.TC_02;
 
 import AutomationExercise.automationTestExercises.BaseTest;
 import AutomationExercise.utilities.Driver;
@@ -55,4 +55,25 @@ public class StepDefinitionImp extends BaseTest {
         softAssert.assertEquals(accountDeletedMessage, message,
                 "Account Deleted! message is not visible or not same as expected");
     }
+
+    @Given("^the user navigates to log in page to login$")
+    public void the_user_navigates_to_log_in_page_to_login() {
+        the_user_landed_on_Home_Page();
+        the_user_click_SignupLogin_button();
+        the_user_see_Login_to_your_account_message();
+    }
+
+
+    @When("^the user clicks Logout button$")
+    public void the_user_clicks_logout_button() {
+        pages.getHomePage().clickLogout();
+    }
+
+    @Then("^the user navigates to log in page$")
+    public void the_user_navigates_to_log_in_page() {
+        String message = pages.getLoginPage().getLoginToYourAccountMessage();
+        Assert.assertEquals(message,"Login to your account");
+    }
+
+
 }
